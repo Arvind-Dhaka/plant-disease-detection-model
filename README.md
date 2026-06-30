@@ -26,20 +26,20 @@ The system is composed of loosely coupled modules implementing the following dat
 
 ```mermaid
 flowchart TD
-    A[Kaggle API Ingestion] --> B[Balanced Sampling <=300 images/class]
-    B --> C[OpenCV Processing Resize 128x128 & Normalize [0,1]]
+    A[Kaggle API Ingestion] --> B["Balanced Sampling (<= 300 images/class)"]
+    B --> C["OpenCV Processing (Resize 128x128 & Normalize [0,1])"]
     C --> D{Pipeline Split}
     
-    D -->|Classical ML Path| E[PCA Dimensionality Reduction 100 components]
-    E --> F[Classical ML Models KNN, SVM, RF, DT, MLP]
-    F --> G[Grid/RandomizedSearchCV Tuning]
+    D -->|Classical ML Path| E["PCA Dimensionality Reduction (100 components)"]
+    E --> F["Classical ML Models (KNN, SVM, RF, DT, MLP)"]
+    F --> G["Grid / RandomizedSearchCV Tuning"]
     
-    D -->|Deep Learning Path| H[Spatial Data Augmentation ImageDataGenerator]
-    H --> I[Custom CNN Architecture 4 Conv Blocks]
-    I --> J[Keras Tuner RandomSearch Optimization]
+    D -->|Deep Learning Path| H["Spatial Data Augmentation (ImageDataGenerator)"]
+    H --> I["Custom CNN Architecture (4 Conv Blocks)"]
+    I --> J["Keras Tuner RandomSearch Optimization"]
     
-    F & I --> K[Model Serialization .pkl & .h5 via joblib/keras]
-    K --> L[Gradio Real-Time Web Dashboard Frontend]
+    F & I --> K["Model Serialization (.pkl & .h5 via joblib/keras)"]
+    K --> L["Gradio Real-Time Web Dashboard Frontend"]
 ```
 
 ### 1. Ingestion Layer
